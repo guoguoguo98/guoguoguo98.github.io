@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on Halo</title>
+    <link>https://guoguoguo98.github.io/posts/</link>
+    <description>Recent content in 博客 on Halo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 11 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://guoguoguo98.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一步步教你掌握 Gmapping：ROS 里的 SLAM 神器</title>
+      <link>https://guoguoguo98.github.io/posts/%E5%88%9D%E8%AF%86gmapping/</link>
+      <pubDate>Fri, 21 Apr 2023 09:35:03 +0800</pubDate>
+      
+      <guid>https://guoguoguo98.github.io/posts/%E5%88%9D%E8%AF%86gmapping/</guid>
+      <description>一、Gmapping 简介 Gmapping 是一款基于 ROS 的开源 SLAM 算法，它采用激光雷达数据进行地图创建和机器人定位。Gmapping 使用格子贝叶斯滤波器 (Grid-based FastSLAM) 算法，具有较高的地图精度和实时性。通过使用 Gmapping，可以实现室内外环境的实时建图和定位。
+二、环境配置 系统要求：本教程以 Ubuntu 18.04 为例，同时需要安装 ROS Melodic。如果你还没有安装 ROS，请参考 ROS 官方安装教程。
+安装依赖包：在安装 Gmapping 之前，需要先安装以下依赖包：
+sudo apt-get install ros-melodic-slam-gmapping sudo apt-get install ros-melodic-turtlebot3 sudo apt-get install ros-melodic-turtlebot3-simulations sudo apt-get install ros-melodic-turtlebot3-navigation 创建工作空间：
+mkdir -p ~/catkin_ws/src cd ~/catkin_ws/src catkin_init_workspace cd ~/catkin_ws catkin_make 然后将工作空间添加到 ~/.bashrc：
+echo &amp;#34;source ~/catkin_ws/devel/setup.bash&amp;#34; &amp;gt;&amp;gt; ~/.bashrc source ~/.bashrc 三、运行 Gmapping 示例 首先，启动 TurtleBot3 模拟器：
+export TURTLEBOT3_MODEL=burger roslaunch turtlebot3_gazebo turtlebot3_world.</description>
+    </item>
+    
+    <item>
+      <title>Cartographer 入门教程：从安装到实践技巧一站式指南</title>
+      <link>https://guoguoguo98.github.io/posts/%E5%88%9D%E8%AF%86cartographer/</link>
+      <pubDate>Thu, 20 Apr 2023 23:45:34 +0800</pubDate>
+      
+      <guid>https://guoguoguo98.github.io/posts/%E5%88%9D%E8%AF%86cartographer/</guid>
+      <description>一、安装 1.1 安装依赖项 首先，我们需要安装一些依赖项。在终端中输入以下命令：
+sudo apt-get update sudo apt-get install -y python-wstool python-rosdep ninja-build 1.2 安装 Cartographer ROS 接下来，创建一个新的工作空间并获取 Cartographer ROS 代码：
+mkdir -p ~/catkin_ws/src cd ~/catkin_ws/src git clone https://github.com/cartographer-project/cartographer_ros.git 1.3 安装所有必要的依赖项 使用 rosdep 安装所有必要的依赖项：
+cd ~/catkin_ws rosdep update rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y 1.4 构建 Cartographer ROS 现在构建 Cartographer ROS：
+cd ~/catkin_ws catkin_make_isolated --install --use-ninja 1.5 更新环境变量 最后，将新安装的软件包添加到 ROS_PACKAGE_PATH 环境变量中：
+source ~/catkin_ws/install_isolated/setup.bash 二、使用 2.1 下载测试数据 为了快速验证安装是否成功，可以下载官方提供的测试数据：
+wget -P ~/Downloads https://storage.</description>
+    </item>
+    
+    <item>
+      <title>调试ROS代码的方法与技巧</title>
+      <link>https://guoguoguo98.github.io/posts/ros%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Thu, 20 Apr 2023 23:26:33 +0800</pubDate>
+      
+      <guid>https://guoguoguo98.github.io/posts/ros%E8%B0%83%E8%AF%95/</guid>
+      <description>当我们使用Robot Operating System（ROS）开发机器人应用程序时，我们可能会遇到一些问题和bug。调试ROS代码对于找到问题并解决它们至关重要。在本文中，我们将介绍一些调试ROS代码的方法和技巧。
+1. 使用roslaunch启动调试 在ROS中，使用roslaunch工具可以一次启动多个节点。它允许我们为节点设置参数、命名空间等。要在调试模式下启动节点，请在launch文件中添加以下行：
+&amp;lt;launch&amp;gt; ... &amp;lt;node name=&amp;#34;your_node_name&amp;#34; pkg=&amp;#34;your_package_name&amp;#34; type=&amp;#34;your_executable_name&amp;#34; launch-prefix=&amp;#34;gdb -ex run --args&amp;#34;&amp;gt; ... &amp;lt;/node&amp;gt; ... &amp;lt;/launch&amp;gt; 这将使用GNU调试器（GDB）启动节点。当节点出现问题时，您可以使用GDB的各种命令来调查问题。
+2. 使用rostopic检查主题通信 rostopic是一个命令行工具，用于查看和发布ROS主题。要查看当前活动的主题列表，请运行：
+rostopic list 要查看特定主题的详细信息，如消息类型和发布者/订阅者列表，请运行：
+rostopic info /your_topic_name 要实时查看主题的消息，请运行：
+rostopic echo /your_topic_name 要手动发布消息到某个主题，请运行：
+rostopic pub /your_topic_name your_msg_type &amp;#34;your_msg_content&amp;#34; 使用这些命令，您可以检查主题间的通信是否正常。
+3. 使用rosrun启动单个节点 有时，我们只需要启动单个节点进行调试。使用rosrun命令可以轻松地启动一个节点。例如：
+rosrun your_package_name your_executable_name 如果需要启动节点并进行调试，可以使用以下命令：
+gdb -ex run --args rosrun your_package_name your_executable_name 4. 使用rqt可视化调试 rqt是一个功能强大的ROS可视化工具，提供了各种插件来帮助调试和可视化ROS系统。以下是一些常用的rqt插件：
+rqt_graph：显示节点和主题之间的连接图 rqt_console：显示节点的日志消息 rqt_bag：查看和编辑ROS bag文件 要启动rqt，请运行：
+rqt 然后，从菜单中选择所需的插件。
+5. 使用rosbag记录和回放数据 rosbag是一个用于记录和回放ROS主题消息的工具。当我们需要在不同时间点分析系统行为时，它尤其有用。
+记录数据 要使用rosbag记录特定主题的数据，请运行以下命令：</description>
+    </item>
+    
+    <item>
+      <title>Python 学习笔记</title>
+      <link>https://guoguoguo98.github.io/posts/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 11 Apr 2023 23:52:20 +0800</pubDate>
+      
+      <guid>https://guoguoguo98.github.io/posts/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>1. 字典转点属性 class dict_dot_notation(dict): &amp;#34;&amp;#34;&amp;#34; 这是将字典转换为点表示法的类 &amp;#34;&amp;#34;&amp;#34; def __init__(self, *args, **kwargs): super().__init__(*args, **kwargs) self.__dict__ = self if __name__ == &amp;#39;__main__&amp;#39;: d = dict_dot_notation({&amp;#39;a&amp;#39;: 1, &amp;#39;b&amp;#39;: 2}) print(d.a) print(d.b) d.c = 3 print(d.c) 2. 类中 __dict__ 的应用 Python 类提供了 __dict__ 属性，该属性可以用类名或者类的实例对象来调用，用类名直接调用 __dict__，会输出该由类中所有类属性组成的字典；而使用类的实例对象调用 __dict__，会输出由类中所有实例属性组成的字典。
+class CLanguage: a = 1 b = 2 def __init__ (self): self.name = &amp;#34;C语言中文网&amp;#34; self.add = &amp;#34;http://c.biancheng.net&amp;#34; #通过类名调用__dict__ print(CLanguage.__dict__) # 结果为： # {&amp;#39;__module__&amp;#39;: &amp;#39;__main__&amp;#39;, &amp;#39;a&amp;#39;: 1, &amp;#39;b&amp;#39;: 2, &amp;#39;__init__&amp;#39;: &amp;lt;function CLanguage.</description>
+    </item>
+    
+    <item>
+      <title>Sublime 格式记录</title>
+      <link>https://guoguoguo98.github.io/posts/sublime/</link>
+      <pubDate>Tue, 11 Apr 2023 23:52:20 +0800</pubDate>
+      
+      <guid>https://guoguoguo98.github.io/posts/sublime/</guid>
+      <description>基本设置
+// Settings in here override those in &amp;#34;Default/Preferences.sublime-settings&amp;#34;, // and are overridden in turn by syntax-specific settings. { &amp;#34;font_size&amp;#34;: 14, &amp;#34;font_face&amp;#34;: &amp;#34;FiraCode NF&amp;#34;, &amp;#34;font_options&amp;#34;: [&amp;#34;no_round&amp;#34;], &amp;#34;margin&amp;#34;: 0, &amp;#34;fold_buttons&amp;#34;: false, &amp;#34;highlight_line&amp;#34;: true, &amp;#34;update_check&amp;#34;:false, &amp;#34;theme&amp;#34;: &amp;#34;Adaptive.sublime-theme&amp;#34;, // &amp;#34;color_scheme&amp;#34;: &amp;#34;Mariana.sublime-color-scheme&amp;#34;, &amp;#34;save_on_focus_lost&amp;#34;: true, // 开启自动保存 &amp;#34;expand_tabs_on_save&amp;#34;:true, &amp;#34;translate_tabs_to_spaces&amp;#34;: true, // 将 tab 转换为 空格 &amp;#34;ensure_newline_at_eof_on_save&amp;#34;: true, // 保存时自动增加文件末尾换行 &amp;#34;draw_white_space&amp;#34;: &amp;#34;all&amp;#34;, // 显示空白字符 &amp;#34;trim_trailing_white_space_on_save&amp;#34;: true, // 保存时自动去除行末空白 &amp;#34;rulers&amp;#34;: [80, 100], // 添加行宽标尺 &amp;#34;default_line_ending&amp;#34;: &amp;#34;unix&amp;#34;, } </description>
+    </item>
+    
+  </channel>
+</rss>

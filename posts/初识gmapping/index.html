@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>一步步教你掌握 Gmapping：ROS 里的 SLAM 神器 - Halo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://guoguoguo98.github.io/favicon.png">
+  <link rel="canonical" href="https://guoguoguo98.github.io/posts/%E5%88%9D%E8%AF%86gmapping/" />
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6b89cc86c0b843a772cdd6c6a8b7e11c2116c7933f6163d2ef225a87e1d2c121.css">
+  
+
+  
+  
+  <meta name="description" content="本文将详细介绍如何安装和使用 Gmapping，这是一款基于 ROS 的 SLAM (Simultaneous Localization and Mapping) 算法。在本教程中，我们将介绍如何在 Ubuntu 系统中安装 Gmapping 并通过模拟器运行实例。" />
+  <meta property="og:title" content="一步步教你掌握 Gmapping：ROS 里的 SLAM 神器" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://guoguoguo98.github.io/posts/%E5%88%9D%E8%AF%86gmapping/" />
+  
+  
+  <meta property="og:description" content="本文将详细介绍如何安装和使用 Gmapping，这是一款基于 ROS 的 SLAM (Simultaneous Localization and Mapping) 算法。在本教程中，我们将介绍如何在 Ubuntu 系统中安装 Gmapping 并通过模拟器运行实例。" />
+  <meta name="twitter:card" content="summary" />
+  
+  <meta name="twitter:site" content="@zerostaticio" />
+  
+  <meta name="twitter:creator" content="@zerostaticio" />
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="https://guoguoguo98.github.io/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="https://guoguoguo98.github.io/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-about">
+                    <a href="https://guoguoguo98.github.io/about/">About</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-tags">
+                    <a href="https://guoguoguo98.github.io/tags/">Tags</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <a class="header-logo" href="/">Halo</a>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog active">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-about ">
+        <a href="/about/">
+          
+          <span>About</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-tags ">
+        <a href="/tags/">
+          
+          <span>Tags</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+<div class="blog">
+  
+  <div class="intro">
+    <h1>一步步教你掌握 Gmapping：ROS 里的 SLAM 神器<span class="dot">。</span></h1>
+    
+  </div>
+  <div class="content">
+    <h2 id="一gmapping-简介">一、Gmapping 简介</h2>
+<p>Gmapping 是一款基于 ROS 的开源 SLAM 算法，它采用激光雷达数据进行地图创建和机器人定位。Gmapping 使用格子贝叶斯滤波器 (Grid-based FastSLAM) 算法，具有较高的地图精度和实时性。通过使用 Gmapping，可以实现室内外环境的实时建图和定位。</p>
+<h2 id="二环境配置">二、环境配置</h2>
+<ol>
+<li>
+<p>系统要求：本教程以 Ubuntu 18.04 为例，同时需要安装 ROS Melodic。如果你还没有安装 ROS，请参考 <a href="http://wiki.ros.org/melodic/Installation/Ubuntu">ROS 官方安装教程</a>。</p>
+</li>
+<li>
+<p>安装依赖包：在安装 Gmapping 之前，需要先安装以下依赖包：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt-get install ros-melodic-slam-gmapping
+</span></span><span class="line"><span class="cl">sudo apt-get install ros-melodic-turtlebot3
+</span></span><span class="line"><span class="cl">sudo apt-get install ros-melodic-turtlebot3-simulations
+</span></span><span class="line"><span class="cl">sudo apt-get install ros-melodic-turtlebot3-navigation
+</span></span></code></pre></div></li>
+<li>
+<p>创建工作空间：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir -p ~/catkin_ws/src
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/catkin_ws/src
+</span></span><span class="line"><span class="cl">catkin_init_workspace
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/catkin_ws
+</span></span><span class="line"><span class="cl">catkin_make
+</span></span></code></pre></div><p>然后将工作空间添加到 ~/.bashrc：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;source ~/catkin_ws/devel/setup.bash&#34;</span> &gt;&gt; ~/.bashrc
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.bashrc
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="三运行-gmapping-示例">三、运行 Gmapping 示例</h2>
+<ol>
+<li>
+<p>首先，启动 TurtleBot3 模拟器：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+</span></span><span class="line"><span class="cl">roslaunch turtlebot3_gazebo turtlebot3_world.launch
+</span></span></code></pre></div><p>这将在 Gazebo 模拟器中启动一个 TurtleBot3 机器人。</p>
+</li>
+<li>
+<p>接下来，运行 Gmapping 算法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:<span class="o">=</span>gmapping
+</span></span></code></pre></div><p>这将启动 Gmapping 算法并开始接收激光雷达数据。</p>
+</li>
+<li>
+<p>开始导航：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+</span></span></code></pre></div><p>这将启动一个键盘控制节点，通过按键 W/A/S/D 控制机器人移动。</p>
+</li>
+<li>
+<p>查看地图：</p>
+<p>可以通过 Rviz 工具查看实时生成的地图：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rosrun rviz rviz -d <span class="sb">`</span>rospack find turtlebot3_slam<span class="sb">`</span>/rviz/turtlebot3_gmapping.rviz
+</span></span></code></pre></div><p>在 Rviz 中，你可以看到机器人在环境中的位置以及正在生成的地图。随着机器人的移动，地图将逐渐变得更加完整。</p>
+</li>
+<li>
+<p>保存地图：</p>
+<p>当地图建立完成时，可以使用以下命令将其保存为一个 .pgm 和 .yaml 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rosrun map_server map_saver -f ~/map
+</span></span></code></pre></div><p>这将在你的用户目录下生成一个名为 map 的文件夹，其中包含地图的 .pgm 和 .yaml 文件。</p>
+</li>
+</ol>
+<h2 id="四总结">四、总结</h2>
+<p>通过本教程，你已经学会了如何在 Ubuntu 系统中安装和使用 Gmapping。Gmapping 是一款强大的 SLAM 工具，可以帮助你快速为机器人构建地图并进行定位。当然，你还可以将此教程中的方法应用于实际的机器人硬件，以实现室内外环境的实时建图和定位。希望这篇文章对你有所帮助，祝你在 ROS 世界中探索得愉快！</p>
+
+  </div>
+</div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/zerostaticio" title="twitter" target="_blank" rel="noopener">
+          <img src="/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/zerostaticthemes/hugo-winston-theme" title="github" target="_blank" rel="noopener">
+          <img src="/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com" title="linkedin" target="_blank" rel="noopener">
+          <img src="/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/bundle.min.5993fcb11c07dea925a3fbd58c03c7f1857197c35fccce3aa963a12c0b3c9960.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+  
+
+
+</body>
+
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Python 学习笔记 - Halo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://guoguoguo98.github.io/favicon.png">
+  <link rel="canonical" href="https://guoguoguo98.github.io/posts/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6b89cc86c0b843a772cdd6c6a8b7e11c2116c7933f6163d2ef225a87e1d2c121.css">
+  
+
+  
+  
+  <meta name="description" content="一些日常遇到的好用的代码片段。" />
+  <meta property="og:title" content="Python 学习笔记" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://guoguoguo98.github.io/posts/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+  
+  
+  <meta property="og:description" content="一些日常遇到的好用的代码片段。" />
+  <meta name="twitter:card" content="summary" />
+  
+  <meta name="twitter:site" content="@zerostaticio" />
+  
+  <meta name="twitter:creator" content="@zerostaticio" />
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="https://guoguoguo98.github.io/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="https://guoguoguo98.github.io/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-about">
+                    <a href="https://guoguoguo98.github.io/about/">About</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-tags">
+                    <a href="https://guoguoguo98.github.io/tags/">Tags</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <a class="header-logo" href="/">Halo</a>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog active">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-about ">
+        <a href="/about/">
+          
+          <span>About</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-tags ">
+        <a href="/tags/">
+          
+          <span>Tags</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+<div class="blog">
+  
+  <div class="intro">
+    <h1>Python 学习笔记<span class="dot">。</span></h1>
+    
+  </div>
+  <div class="content">
+    <h3 id="1-字典转点属性">1. 字典转点属性</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">dict_dot_notation</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; 这是将字典转换为点表示法的类 &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="bp">self</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span> <span class="o">=</span> <span class="n">dict_dot_notation</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="2-类中-__dict__-的应用">2. 类中 <code>__dict__</code> 的应用</h3>
+<p>Python 类提供了 <code>__dict__</code> 属性，该属性可以用类名或者类的实例对象来调用，用类名直接调用 <code>__dict__</code>，会输出该由类中所有类属性组成的字典；而使用类的实例对象调用 <code>__dict__</code>，会输出由类中所有实例属性组成的字典。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CLanguage</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;C语言中文网&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">add</span> <span class="o">=</span> <span class="s2">&#34;http://c.biancheng.net&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#通过类名调用__dict__</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">CLanguage</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果为：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {&#39;__module__&#39;: &#39;__main__&#39;, &#39;a&#39;: 1, &#39;b&#39;: 2, &#39;__init__&#39;: &lt;function CLanguage.__init__ at 0x0000022C69833E18&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;CLanguage&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;CLanguage&#39; objects&gt;, &#39;__doc__&#39;: None}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#通过类实例对象调用 __dict__</span>
+</span></span><span class="line"><span class="cl"><span class="n">clangs</span> <span class="o">=</span> <span class="n">CLanguage</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">clangs</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果为：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {&#39;name&#39;: &#39;C语言中文网&#39;, &#39;add&#39;: &#39;http://c.biancheng.net&#39;}</span>
+</span></span></code></pre></div><p>通过这一属性可以实现一下功能：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Color</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">green</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">white</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@staticmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">random</span><span class="p">(</span><span class="n">obj_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">color_list</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">Color</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">c</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&#34;__&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="ow">and</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&#34;random&#34;</span><span class="p">,</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;white&#34;</span><span class="p">,</span> <span class="s2">&#34;grey&#34;</span><span class="p">,</span> <span class="s2">&#34;black&#34;</span><span class="p">,</span> <span class="s2">&#34;silver&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">Color</span><span class="p">,</span> <span class="n">color_list</span><span class="p">[</span><span class="n">obj_id</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">color_list</span><span class="p">)])</span>
+</span></span></code></pre></div><h3 id="3-嵌套类内类">3. 嵌套类（内类）</h3>
+<p>嵌套类（也叫内类）是在另一个类中定义的。它在所有面向对象的编程语言中都是非常常用的，可以有很多好处。它并不能提高执行时间，但可以通过将相关的类归为一组来帮助程序的可读性和维护，而且还可以将嵌套类隐藏起来，不让外界看到。</p>
+<p>下面的代码展示了一个非常简单的嵌套类的结构。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Dept</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dname</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">dname</span> <span class="o">=</span> <span class="n">dname</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Prof</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pname</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">pname</span> <span class="o">=</span> <span class="n">pname</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">math</span> <span class="o">=</span> <span class="n">Dept</span><span class="p">(</span><span class="s2">&#34;Mathematics&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mathprof</span> <span class="o">=</span> <span class="n">Dept</span><span class="o">.</span><span class="n">Prof</span><span class="p">(</span><span class="s2">&#34;Mark&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">dname</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">mathprof</span><span class="o">.</span><span class="n">pname</span><span class="p">)</span>
+</span></span></code></pre></div><p>输出</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Mathematics</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mark</span>
+</span></span></code></pre></div><p>注意，我们不能直接访问内部类。我们使用 <code>outer.inner</code> 格式创建其对象。</p>
+<p>我们可以访问外类中的嵌套类，但不能反过来访问。要访问外类中的嵌套类，我们可以使用 <code>outer.inner</code> 格式或 <code>self</code> 关键字。</p>
+<p>在下面的代码中，我们对上述类做了一些改动，并使用父类访问嵌套类的一个函数。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Dept</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dname</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">dname</span> <span class="o">=</span> <span class="n">dname</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">inner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Prof</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">outer_disp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">inner_disp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dname</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Prof</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">inner_disp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">details</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">details</span><span class="p">,</span> <span class="s2">&#34;From Inner Class&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">math</span> <span class="o">=</span> <span class="n">Dept</span><span class="p">(</span><span class="s2">&#34;Mathematics&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">math</span><span class="o">.</span><span class="n">outer_disp</span><span class="p">()</span>
+</span></span></code></pre></div><p>输出</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Mathematics</span> <span class="n">From</span> <span class="n">Inner</span> <span class="n">Class</span>
+</span></span></code></pre></div>
+  </div>
+</div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/zerostaticio" title="twitter" target="_blank" rel="noopener">
+          <img src="/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/zerostaticthemes/hugo-winston-theme" title="github" target="_blank" rel="noopener">
+          <img src="/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com" title="linkedin" target="_blank" rel="noopener">
+          <img src="/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/bundle.min.5993fcb11c07dea925a3fbd58c03c7f1857197c35fccce3aa963a12c0b3c9960.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+  
+
+
+</body>
+
+</html>

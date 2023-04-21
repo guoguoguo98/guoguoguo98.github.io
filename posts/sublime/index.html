@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sublime 格式记录 - Halo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://guoguoguo98.github.io/favicon.png">
+  <link rel="canonical" href="https://guoguoguo98.github.io/posts/sublime/" />
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6b89cc86c0b843a772cdd6c6a8b7e11c2116c7933f6163d2ef225a87e1d2c121.css">
+  
+
+  
+  
+  <meta name="description" content="我用的 Sublime 的设置。" />
+  <meta property="og:title" content="Sublime 格式记录" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://guoguoguo98.github.io/posts/sublime/" />
+  
+  
+  <meta property="og:description" content="我用的 Sublime 的设置。" />
+  <meta name="twitter:card" content="summary" />
+  
+  <meta name="twitter:site" content="@zerostaticio" />
+  
+  <meta name="twitter:creator" content="@zerostaticio" />
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="https://guoguoguo98.github.io/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="https://guoguoguo98.github.io/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-about">
+                    <a href="https://guoguoguo98.github.io/about/">About</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-tags">
+                    <a href="https://guoguoguo98.github.io/tags/">Tags</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <a class="header-logo" href="/">Halo</a>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog active">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-about ">
+        <a href="/about/">
+          
+          <span>About</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-tags ">
+        <a href="/tags/">
+          
+          <span>Tags</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+<div class="blog">
+  
+  <div class="intro">
+    <h1>Sublime 格式记录<span class="dot">。</span></h1>
+    
+  </div>
+  <div class="content">
+    <p>基本设置</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// Settings in here override those in &#34;Default/Preferences.sublime-settings&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">// and are overridden in turn by syntax-specific settings.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;font_size&#34;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;font_face&#34;</span><span class="p">:</span> <span class="s2">&#34;FiraCode NF&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;font_options&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;no_round&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;margin&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;fold_buttons&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;highlight_line&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;update_check&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;Adaptive.sublime-theme&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// &#34;color_scheme&#34;: &#34;Mariana.sublime-color-scheme&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;save_on_focus_lost&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>                         <span class="c1">// 开启自动保存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;expand_tabs_on_save&#34;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;translate_tabs_to_spaces&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>                   <span class="c1">// 将 tab 转换为 空格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;ensure_newline_at_eof_on_save&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>              <span class="c1">// 保存时自动增加文件末尾换行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;draw_white_space&#34;</span><span class="p">:</span> <span class="s2">&#34;all&#34;</span><span class="p">,</span>                          <span class="c1">// 显示空白字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;trim_trailing_white_space_on_save&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>          <span class="c1">// 保存时自动去除行末空白
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;rulers&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>                                <span class="c1">// 添加行宽标尺
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;default_line_ending&#34;</span><span class="p">:</span> <span class="s2">&#34;unix&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+  </div>
+</div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/zerostaticio" title="twitter" target="_blank" rel="noopener">
+          <img src="/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/zerostaticthemes/hugo-winston-theme" title="github" target="_blank" rel="noopener">
+          <img src="/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com" title="linkedin" target="_blank" rel="noopener">
+          <img src="/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/bundle.min.5993fcb11c07dea925a3fbd58c03c7f1857197c35fccce3aa963a12c0b3c9960.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+  
+
+
+</body>
+
+</html>

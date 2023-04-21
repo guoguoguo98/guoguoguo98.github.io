@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Cartographer 入门教程：从安装到实践技巧一站式指南 - Halo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://guoguoguo98.github.io/favicon.png">
+  <link rel="canonical" href="https://guoguoguo98.github.io/posts/%E5%88%9D%E8%AF%86cartographer/" />
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6b89cc86c0b843a772cdd6c6a8b7e11c2116c7933f6163d2ef225a87e1d2c121.css">
+  
+
+  
+  
+  <meta name="description" content="Cartographer 是一款开源的实时 SLAM (Simultaneous Localization and Mapping) 系统，适用于 2D 和 3D 空间。在许多机器人领域，如自动导航、无人机和自动驾驶汽车等，Cartographer 都发挥着重要作用。在本文中，我们将深入了解如何安装和使用 Cartographer ROS（Robot Operating System）以及一些实用技巧。" />
+  <meta property="og:title" content="Cartographer 入门教程：从安装到实践技巧一站式指南" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://guoguoguo98.github.io/posts/%E5%88%9D%E8%AF%86cartographer/" />
+  
+  
+  <meta property="og:description" content="Cartographer 是一款开源的实时 SLAM (Simultaneous Localization and Mapping) 系统，适用于 2D 和 3D 空间。在许多机器人领域，如自动导航、无人机和自动驾驶汽车等，Cartographer 都发挥着重要作用。在本文中，我们将深入了解如何安装和使用 Cartographer ROS（Robot Operating System）以及一些实用技巧。" />
+  <meta name="twitter:card" content="summary" />
+  
+  <meta name="twitter:site" content="@zerostaticio" />
+  
+  <meta name="twitter:creator" content="@zerostaticio" />
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="https://guoguoguo98.github.io/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="https://guoguoguo98.github.io/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-about">
+                    <a href="https://guoguoguo98.github.io/about/">About</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-tags">
+                    <a href="https://guoguoguo98.github.io/tags/">Tags</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <a class="header-logo" href="/">Halo</a>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog active">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-about ">
+        <a href="/about/">
+          
+          <span>About</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-tags ">
+        <a href="/tags/">
+          
+          <span>Tags</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+<div class="blog">
+  
+  <div class="intro">
+    <h1>Cartographer 入门教程：从安装到实践技巧一站式指南<span class="dot">。</span></h1>
+    
+  </div>
+  <div class="content">
+    <h2 id="一安装">一、安装</h2>
+<h4 id="11-安装依赖项">1.1 安装依赖项</h4>
+<p>首先，我们需要安装一些依赖项。在终端中输入以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl">sudo apt-get install -y python-wstool python-rosdep ninja-build
+</span></span></code></pre></div><h4 id="12-安装-cartographer-ros">1.2 安装 Cartographer ROS</h4>
+<p>接下来，创建一个新的工作空间并获取 Cartographer ROS 代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir -p ~/catkin_ws/src
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/catkin_ws/src
+</span></span><span class="line"><span class="cl">git clone https://github.com/cartographer-project/cartographer_ros.git
+</span></span></code></pre></div><h4 id="13-安装所有必要的依赖项">1.3 安装所有必要的依赖项</h4>
+<p>使用 <code>rosdep</code> 安装所有必要的依赖项：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> ~/catkin_ws
+</span></span><span class="line"><span class="cl">rosdep update
+</span></span><span class="line"><span class="cl">rosdep install --from-paths src --ignore-src --rosdistro<span class="o">=</span><span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span> -y
+</span></span></code></pre></div><h4 id="14-构建-cartographer-ros">1.4 构建 Cartographer ROS</h4>
+<p>现在构建 Cartographer ROS：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> ~/catkin_ws
+</span></span><span class="line"><span class="cl">catkin_make_isolated --install --use-ninja
+</span></span></code></pre></div><h4 id="15-更新环境变量">1.5 更新环境变量</h4>
+<p>最后，将新安装的软件包添加到 ROS_PACKAGE_PATH 环境变量中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">source</span> ~/catkin_ws/install_isolated/setup.bash
+</span></span></code></pre></div><h2 id="二使用">二、使用</h2>
+<h4 id="21-下载测试数据">2.1 下载测试数据</h4>
+<p>为了快速验证安装是否成功，可以下载官方提供的测试数据：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">wget -P ~/Downloads https://storage.googleapis.com/cartographer-public-data/bags/backpack_2d/cartographer_paper_deutsches_museum.bag
+</span></span></code></pre></div><h4 id="22-运行-cartographer-ros">2.2 运行 Cartographer ROS</h4>
+<p>现在启动 Cartographer ROS 并加载测试数据：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">roslaunch cartographer_ros demo_backpack_2d.launch bag_filename:<span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/Downloads/cartographer_paper_deutsches_museum.bag
+</span></span></code></pre></div><p>成功启动后，你将看到 RViz 界面显示 SLAM 结果。</p>
+<h2 id="三技巧">三、技巧</h2>
+<h4 id="31-调整参数">3.1 调整参数</h4>
+<p>Cartographer 提供了许多参数供用户调整以优化 SLAM 效果。你可以在 <code>cartographer_ros/configuration_files</code> 文件夹中找到 <code>.lua</code> 配置文件。通过修改这些文件，可以调整各种参数，如扫描匹配权重、子图大小等。</p>
+<h4 id="32-自定义传感器配置">3.2 自定义传感器配置</h4>
+<p>如果你使用的是非标准传感器或机器人，可能需要为其创建自定义的 URDF 文件和传感器配置文件。这可以通过修改现有的 <code>.urdf</code> 和 <code>.launch</code> 文件实现。</p>
+<h4 id="33-实时调整-rviz-参数">3.3 实时调整 RViz 参数</h4>
+<p>在 RViz 中，可以实时调整各种参数以优化可视化效果。例如，你可以修改 PointCloud2、Map、LaserScan 等的颜色、大小和透明度。另外，可以通过添加或删除插件，如 TF、Path 等，来定制 RViz 界面。</p>
+<h4 id="34-地图保存与加载">3.4 地图保存与加载</h4>
+<p>在 SLAM 过程完成后，你可能希望保存生成的地图以供后续使用。可以使用 map_saver 工具将地图保存为 PGM 和 YAML 格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rosrun map_server map_saver -f ~/your_output_directory/map
+</span></span></code></pre></div><p>保存的地图可以在之后的导航任务中加载。为此，你需要在启动导航节点时加载对应的 YAML 文件。</p>
+<h2 id="四总结">四、总结</h2>
+<p>本文详细介绍了 Cartographer ROS 的安装、使用和技巧。现在你应该能够成功安装 Cartographer ROS，并运行官方提供的测试数据。此外，我们还探讨了如何调整参数、自定义传感器配置、实时调整 RViz 参数以及地图保存与加载。</p>
+<p>希望这篇博客能够帮助你更好地理解和使用 Cartographer ROS。在实际应用中，你可能需要根据你的需求和硬件配置进行一些调整。但通过本文提供的信息，你应该已经具备了进行这些调整的基本知识。祝你在使用 Cartographer ROS 的过程中取得成功！</p>
+
+  </div>
+</div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/zerostaticio" title="twitter" target="_blank" rel="noopener">
+          <img src="/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/zerostaticthemes/hugo-winston-theme" title="github" target="_blank" rel="noopener">
+          <img src="/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com" title="linkedin" target="_blank" rel="noopener">
+          <img src="/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/bundle.min.5993fcb11c07dea925a3fbd58c03c7f1857197c35fccce3aa963a12c0b3c9960.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+  
+
+
+</body>
+
+</html>
